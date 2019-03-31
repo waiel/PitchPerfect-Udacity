@@ -23,14 +23,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         stopRecordingButton.isEnabled = false
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     // MARK: Audio Recorder Actions
     
     @IBAction func recordAudio(_ sender: Any) {
-        setRecording(true)
+        configureUI(isRecording: true)
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
@@ -47,25 +43,33 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
     }
     
+    
     @IBAction func stopRecording(_ sender: Any) {
-        setRecording(false)
+        configureUI(isRecording: false)
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
     }
     
-    func setRecording(_ recordState: Bool) {
-        switch(recordState) {
-        case true:
-            recordingLabel.text = "Recording in Progress"
-            stopRecordingButton.isEnabled = true
-            recordButton.isEnabled = false
-        case false:
-            recordButton.isEnabled = true
-            stopRecordingButton.isEnabled=false
-            recordingLabel.text = "Tap to Record"
-        }
+    
+    func configureUI(isRecording: Bool) {
+        recordingLabel.text = isRecording ?  "Recording in progress" : "Tap to record"
+        stopRecordingButton.isEnabled = isRecording
+        recordButton.isEnabled = !isRecording
     }
+    
+//    func setRecording(_ recordState: Bool) {
+//        switch(recordState) {
+//        case true:
+//            recordingLabel.text = "Recording in Progress"
+//            stopRecordingButton.isEnabled = true
+//            recordButton.isEnabled = false
+//        case false:
+//            recordButton.isEnabled = true
+//            stopRecordingButton.isEnabled=false
+//            recordingLabel.text = "Tap to Record"
+//        }
+//    }
     
     // MARK: - Audio Recorder Delegate
     
