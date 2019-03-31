@@ -20,7 +20,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recordButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        stopRecordingButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
         stopRecordingButton.isEnabled = false
+        
     }
 
     // MARK: Audio Recorder Actions
