@@ -60,6 +60,15 @@ class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAudio()
+        
+        //fix aspect ratio for buttons
+        snailButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        rabbitButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        chipmunkButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        vaderButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        echoButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        reverbButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
